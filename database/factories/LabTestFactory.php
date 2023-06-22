@@ -23,6 +23,7 @@ class LabTestFactory extends Factory
         return [
             'test_name' => $this->faker->word,
             'notes' => $this->faker->sentence(20),
+            'fee' => $this->faker->numberBetween(500, 1)
             // Add additional fields if necessary
         ];
     }

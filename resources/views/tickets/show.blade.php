@@ -3,7 +3,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Patient Name : {{ $ticket->patient->name }}
+            Patient Name: {{ $ticket->patient->name }}
         </h2>
     </x-slot>
 
@@ -48,6 +48,7 @@
                                 <h3 class="text-lg font-bold mb-4">Ticket Information</h3>
                                 <p><strong>Ticket Number:</strong> {{ $ticket->ticket_number }}</p>
                                 <p><strong>Patient Name:</strong> {{ $ticket->patient->name }}</p>
+                                <p><strong>Fee:</strong> {{ $ticket->fee }}</p>
                                 <p><strong>Checked In:</strong> {{ $ticket->checked_in_at ? 'Yes' : 'No' }}</p>
                                 <p><strong>Date:</strong> {{ $ticket->created_at->format('Y-m-d H:i:s') }}</p>
                                 <br />
@@ -57,14 +58,16 @@
                                 @if (isset($ticket->lab_tests))
                                     <ul>
                                         <li>
-                                            <span class="font-semibold">Test Name</span> : {{ $ticket->lab_tests->test_name }}
+                                            <span class="font-semibold">Test Name:</span> {{ $ticket->lab_tests->test_name }}
                                         </li>
                                         <li>
-                                            <span class="font-semibold">Specialist Notes</span> : {{ $ticket->lab_tests->notes }}
+                                            <span class="font-semibold">Specialist Notes:</span> {{ $ticket->lab_tests->notes }}
                                         </li>
+                                        <li>
+                                            <span class="font-semibold">Amount:</span> {{ $ticket->lab_tests->fee }}</li>
                                     </ul>
                                 @else
-                                    <p>No lab tests yet. please create</p>
+                                    <p>Lab test is in process, please wait</p>
                                     <div x-data="{ open: false }">
                                         <!-- Modal Button -->
                                         <button type="button" class="px-4 py-2 bg-blue-500 text-white rounded" @click="open = true">Add Lab test</button>
@@ -95,7 +98,7 @@
                                                             <label for="notes" class="block text-gray-700 font-bold mb-2">Notes</label>
                                                             <textarea id="notes" name="notes" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500" placeholder="Enter your notes" required></textarea>
                                                         </div>
-                                                        <input type="hidden" name="ticket_id" value="{{$ticket->id}}" />
+                                                        <input type="hidden" name="ticket_id" value="{{ $ticket->id }}" />
 
                                                         <div class="flex justify-end">
                                                             <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Submit</button>
@@ -116,12 +119,14 @@
                                 @if (isset($ticket->medical_reports))
                                     <ul>
                                         <li>
-                                            <span class="font-semibold"> Diagnosis </span> :
-                                            {{ $ticket->medical_reports->diagnosis }}
+                                            <span class="font-semibold">Diagnosis:</span> {{ $ticket->medical_reports->diagnosis }}
                                         </li>
                                         <li>
-                                            <span class="font-semibold"> Prescription </span> :
-                                            {{ $ticket->medical_reports->prescription }}
+                                            <span class="font-semibold">Prescription:</span> {{ $ticket->medical_reports->prescription }}
+                                        </li>
+
+                                        <li>
+                                            <span class="font-semibold">Amount:</span> {{ $ticket->medical_reports->fee }}
                                         </li>
                                     </ul>
                                 @else
@@ -156,7 +161,7 @@
                                                             <label for="notes" class="block text-gray-700 font-bold mb-2">Prescription</label>
                                                             <textarea id="prescription" name="prescription" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500" placeholder="Enter your notes" required></textarea>
                                                         </div>
-                                                        <input type="hidden" name="ticket_id" value="{{$ticket->id}}" />
+                                                        <input type="hidden" name="ticket_id" value="{{ $ticket->id }}" />
 
                                                         <div class="flex justify-end">
                                                             <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Submit</button>
@@ -172,9 +177,21 @@
                         </div>
                     </div>
 
+                    <!-- Calculate Amount -->
+                    <div class="mt-6">
+                        <h3 class="text-lg font-bold mb-4">Amount</h3>
+                        <p><strong>Total Amount:</strong> KSH
+                            @if (isset($ticket->fee) && isset($ticket->lab_tests) && isset($ticket->medical_reports))
+                                {{ $ticket->fee + $ticket->lab_tests->fee + $ticket->medical_reports->fee }}
+                            @else
+                                Coming soon
+                            @endif
+                        </p>
+
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </x-app-layout>
-

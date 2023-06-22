@@ -23,6 +23,7 @@ class MedicalReportFactory extends Factory
         return [
             'diagnosis' => $this->faker->text,
             'prescription' => $this->faker->text,
+            'fee' => $this->faker->numberBetween(500, 1),
             // Add additional fields if necessary
         ];
     }

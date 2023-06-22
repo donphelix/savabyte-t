@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ticket_id');
             $table->string('test_name');
             $table->longText('notes')->nullable();
+            $table->longText('fee');
             // Add any additional lab test-related fields here
             $table->timestamps();
 

@@ -23,6 +23,7 @@ class TicketFactory extends Factory
         return [
             'ticket_number' => $this->faker->unique()->randomNumber(6),
             'checked_in_at' => $this->faker->dateTime(),
+            'fee' => $this->faker->numberBetween(500, 1),
             'patient_id' => 1, // Replace with desired patient_id value
             'user_id' => 1, // Replace with desired user_id value
             // Add additional fields if necessary

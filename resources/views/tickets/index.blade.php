@@ -43,12 +43,12 @@
                             <tbody>
                             @foreach ($tickets as $ticket)
                                 <tr>
-                                    <td class="px-4 py-2">{{ $ticket->patient->name }}</td>
-                                    <td class="px-4 py-2">{{ $ticket->ticket_number }}</td>
-                                    <td class="px-4 py-2">{{ $ticket->created_at->format('Y-m-d H:i:s') }}</td>
-                                    <td class="px-4 py-2">{{ $ticket->checked_in_at ? 'Checked In' : 'Not Checked In' }}</td>
-                                    <td class="px-4 py-2">
-                                        <a href="{{ route('tickets.show', $ticket->id) }}" class="text-blue-500 hover:underline">View more</a>
+                                    <td class="border px-4 py-2">{{ $ticket->patient->name }}</td>
+                                    <td class="border px-4 py-2">{{ $ticket->ticket_number }}</td>
+                                    <td class="border px-4 py-2">{{ $ticket->created_at->format('Y-m-d H:i:s') }}</td>
+                                    <td class="border px-4 py-2">{{ $ticket->checked_in_at ? 'Checked In' : 'Not Checked In' }}</td>
+                                    <td class="border px-4 py-2">
+                                        <a href="{{ route('tickets.show', $ticket->id) }}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">View more</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ticket_id');
             $table->text('diagnosis');
             $table->text('prescription');
+            $table->integer('fee');
             // Add any additional medical report-related fields here
             $table->timestamps();
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('ticket_number');
             $table->dateTime('checked_in_at');
             $table->unsignedBigInteger('patient_id');
+            $table->integer('fee')->default(500);
             $table->unsignedBigInteger('user_id'); // New column
             $table->timestamps();
 

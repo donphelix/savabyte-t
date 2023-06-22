@@ -25,9 +25,11 @@ class MedicalReportController extends Controller
             'prescription' => 'required',
         ]);
 
+        $validatedData['fee'] = 700;
+
         MedicalReport::create($validatedData);
 
-        return redirect()->route('tickets.show', $request->ticket_id)->with('success', 'Lab test created successfully.');
+        return redirect()->route('tickets.show', $request->ticket_id)->with('success', 'Medical Report created successfully.');
     }
 
     public function edit(MedicalReport $medicalReport): View|Application|Factory|\Illuminate\Contracts\Foundation\Application

@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 
 class LabTestController extends Controller
 {
-    public function index()
+    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $labTests = LabTest::all();
 
         return view('lab_tests.index', compact('labTests'));
     }
 
-    public function create()
+    public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('lab_tests.create');
     }
@@ -29,17 +29,20 @@ class LabTestController extends Controller
             // Add any other validation rules here
         ]);
 
+        // Should be coming from somewhere in the system, for now it's hard coded.
+        $validatedData['fee'] = 700;
+
         LabTest::create($validatedData);
 
         return redirect()->route('tickets.show', $request->ticket_id)->with('success', 'Lab test created successfully.');
     }
 
-    public function edit(LabTest $labTest)
+    public function edit(LabTest $labTest): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('lab_tests.edit', compact('labTest'));
     }
 
-    public function update(Request $request, LabTest $labTest)
+    public function update(Request $request, LabTest $labTest): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required',
@@ -51,7 +54,7 @@ class LabTestController extends Controller
         return redirect()->route('lab_tests.index')->with('success', 'Lab test updated successfully.');
     }
 
-    public function destroy(LabTest $labTest)
+    public function destroy(LabTest $labTest): RedirectResponse
     {
         $labTest->delete();
 

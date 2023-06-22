@@ -19,14 +19,14 @@ class Ticket extends Model
         return $this->belongsTo(Patient::class, 'patient_id', 'id');
     }
 
-    public function labTest(): HasOne
+    public function lab_tests(): HasOne
     {
-        return $this->hasOne(LabTest::class, 'ticket_id', 'id');
+        return $this->hasOne(LabTest::class);
     }
 
-    public function medicalReport(): HasOne
+    public function medical_reports(): HasOne
     {
-        return $this->hasOne(MedicalReport::class, 'ticket_id', 'id');
+        return $this->hasOne(MedicalReport::class);
     }
 
     public function user(): BelongsTo

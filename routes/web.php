@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LabTestController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,8 +47,26 @@ Route::get('/patients/{patients}/edit', [PatientController::class, 'edit'])->nam
 Route::put('/patients/{patients}', [PatientController::class, 'update'])->name('patients.update');
 Route::delete('/patients/{patients}', [PatientController::class, 'destroy'])->name('patients.destroy');
 
-Route::get('/tickets/create', [TicketController::class, 'create'])->name('tickets.create');
-Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
+Route::get('/tickets/index', [TicketController::class, 'index'])->name('tickets.index');
+//Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
 Route::get('/tickets/{ticket}', [TicketController::class, 'show'])->name('tickets.show');
+
+Route::get('/lab_tests', [LabTestController::class, 'index'])->name('lab_tests.index');
+Route::get('/lab_tests/create', [LabTestController::class, 'create'])->name('lab_tests.create');
+Route::post('/lab_tests', [LabTestController::class, 'store'])->name('lab_tests.store');
+Route::get('/lab_tests/{labTest}/edit', [LabTestController::class, 'edit'])->name('lab_tests.edit');
+Route::put('/lab_tests/{labTest}', [LabTestController::class, 'update'])->name('lab_tests.update');
+Route::delete('/lab_tests/{labTest}', [LabTestController::class, 'destroy'])->name('lab_tests.destroy');
+
+use App\Http\Controllers\MedicalReportController;
+
+Route::get('/medical_reports/create/{ticket}', [MedicalReportController::class, 'create'])->name('medical_reports.create');
+Route::post('/medical_reports', [MedicalReportController::class, 'store'])->name('medical_reports.store');
+Route::get('/medical_reports/{medicalReport}/edit', [MedicalReportController::class, 'edit'])->name('medical_reports.edit');
+Route::put('/medical_reports/{medicalReport}', [MedicalReportController::class, 'update'])->name('medical_reports.update');
+Route::delete('/medical_reports/{medicalReport}', [MedicalReportController::class, 'destroy'])->name('medical_reports.destroy');
+
+
+
 
 require __DIR__.'/auth.php';

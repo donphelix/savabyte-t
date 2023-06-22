@@ -23,6 +23,8 @@ class PatientFactory extends Factory
         return [
             'name' => $this->faker->name,
             'age' => $this->faker->numberBetween(1, 100),
+            'email' => $this->faker->email,
+            'phone' => $this->faker->phoneNumber,
             'user_id' => 1, // Replace with desired user_id value
             // Add additional fields if necessary
         ];

@@ -18,10 +18,11 @@ class LabTestFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'test_name' => $this->faker->word,
+            'notes' => $this->faker->sentence(20),
             // Add additional fields if necessary
         ];
     }

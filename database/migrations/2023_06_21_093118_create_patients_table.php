@@ -12,7 +12,10 @@ class CreatePatientsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('age');
-            $table->unsignedBigInteger('user_id'); // New column
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->enum('status', ['Pending', 'Diagnosed', 'Treated'])->default('Pending');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

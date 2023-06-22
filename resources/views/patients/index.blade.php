@@ -23,16 +23,22 @@
 
                     <div class="mb-6 flex items-center justify-between">
                         <h2 class="text-2xl font-bold">Patient List</h2>
-                        <a href="{{ route('patients.create') }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Create Patient</a>
+                        <a href="{{ route('patients.create') }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                            Create Patient
+                        </a>
                     </div>
 
                     <!-- Patient table -->
-                    <table class="w-full bg-white border border-gray-300">
+                    <table class="w-full bg-white">
                         <thead>
                         <tr>
                             <th class="px-4 py-2 font-medium text-left">Name</th>
                             <th class="px-4 py-2 font-medium text-left">Age</th>
+                            <th class="px-4 py-2 font-medium text-left">Date Created</th>
+                            <th class="px-4 py-2 font-medium text-left">Date Edited</th>
+                            <th class="px-4 py-2 font-medium text-left">Status</th>
                             <th class="px-4 py-2 font-medium text-left">Actions</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -40,19 +46,15 @@
                             <tr>
                                 <td class="border px-4 py-2">{{ $patient->name }}</td>
                                 <td class="border px-4 py-2">{{ $patient->age }}</td>
-                                <td class="border px-4 py-2">
-                                    <button class="bg-blue-500">
-                                        View
-                                    </button>
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <button class="">
+                                <td class="border px-4 py-2">{{ $patient->created_at }}</td>
+                                <td class="border px-4 py-2">{{ $patient->updated_at }}</td>
+                                <td class="border px-4 py-2">{{ $patient->status }}</td>
+                                <td class="border px-4 py-2 items-center justify-between">
+                                    <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
                                         Edit
                                     </button>
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-                                        <span>Delete</span>
+                                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Delete
                                     </button>
                                 </td>
                             </tr>

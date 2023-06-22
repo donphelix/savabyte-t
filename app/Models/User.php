@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Patient::class, 'user_id', 'id');
     }
+
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }
